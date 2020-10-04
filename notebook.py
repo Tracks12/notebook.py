@@ -7,8 +7,9 @@
 ----------------------
 """
 
+from platform import system
 from time import sleep
-import json, os, platform, sys
+import json, os, sys
 
 class color:
 	red   = "\033[31m"
@@ -187,7 +188,7 @@ def main():
 			print("{}Céléstin arrête tes carabistouilles !".format(icon.warn))
 
 if(__name__ == '__main__'):
-	system = platform.system()
+	system = system()
 
 	main()
 	print("Au revoir kheyou ;)")
