@@ -11,8 +11,31 @@ class Rep:
 	def __init__(self, file):
 		self.entries = []
 		self.__path = "{}.json".format(file)
-		self.loadJSON()
+		self.__loadJSON()
 		self.menu()
+
+	def __loadJSON(self):
+		try:
+			print("{}Chargement du répertoire ...".format(icon.info))
+
+			with open(self.__path) as inFile:
+				self.entries = json.load(inFile)
+				print("{}Répertoire charger".format(icon.info))
+
+		except Exception:
+			print("{}Répertoire introuvable".format(icon.warn))
+			print("{}Création du répertoire ...".format(icon.info))
+
+			with open(self.__path, 'w') as outFile:
+				json.dump([], outFile, sort_keys=True, indent=2)
+				print("{}Nouveau répertoire crée".format(icon.info))
+
+	def __saveJSON(self):
+		print("{}Sauvegarde du répertoire ...".format(icon.info))
+
+		with open(self.__path, 'w') as outFile:
+			json.dump(self.entries, outFile, sort_keys=True, indent=2)
+			print("{}Répertoire sauvegarder".format(icon.info))
 
 	def menu(self):
 		menu = [
@@ -48,7 +71,7 @@ class Rep:
 				if(item["name"] == name):
 					self.entries.pop(key)
 					print("\n{}L'entrée à bien été supprimer".format(icon.info))
-					self.saveJSON()
+					self.__saveJSON()
 
 					return True
 
@@ -90,7 +113,7 @@ class Rep:
 
 			if(self.add(fields)):
 				print("\n{}L'entrée à bien été enregistrer".format(icon.info))
-				self.saveJSON()
+				self.__saveJSON()
 
 				return True
 
@@ -109,26 +132,3 @@ class Rep:
 		print("Mail\t\t: {}".format(item["mail"].lower()))
 		print("Adresse\t\t: {}".format(item["address"].lower()))
 		print("-------")
-
-	def loadJSON(self):
-		try:
-			print("{}Chargement du répertoire ...".format(icon.info))
-
-			with open(self.__path) as inFile:
-				self.entries = json.load(inFile)
-				print("{}Répertoire charger".format(icon.info))
-
-		except Exception:
-			print("{}Répertoire introuvable".format(icon.warn))
-			print("{}Création du répertoire ...".format(icon.info))
-
-			with open(self.__path, 'w') as outFile:
-				json.dump([], outFile, sort_keys=True, indent=2)
-				print("{}Nouveau répertoire crée".format(icon.info))
-
-	def saveJSON(self):
-		print("{}Sauvegarde du répertoire ...".format(icon.info))
-
-		with open(self.__path, 'w') as outFile:
-			json.dump(self.entries, outFile, sort_keys=True, indent=2)
-			print("{}Répertoire sauvegarder".format(icon.info))
