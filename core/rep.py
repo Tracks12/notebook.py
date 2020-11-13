@@ -10,7 +10,7 @@ from core.icons import Icons as icon
 class Rep:
 	def __init__(self, file):
 		self.entries = []
-		self.__path = "{}.json".format(file)
+		self.__path = "reps/{}.json".format(file)
 		self.__loadJSON()
 		self.menu()
 
