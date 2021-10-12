@@ -109,7 +109,7 @@ class Rep:
 
 	def sortOnceByName(self):
 		try:
-			name = str(input(f"Nom: {Colors.green}"))
+			name = str(input(f"Nom: {Colors.green}")).upper()
 			print(f"{Colors.end}----")
 
 			for item in self.entries:
@@ -122,12 +122,12 @@ class Rep:
 	def insert(self):
 		try:
 			fields = {
-				"name":     str(input(f"{Colors.end}Nom\t\t: {Colors.cyan}")),
-				"fname":    str(input(f"{Colors.end}Prénom\t\t: {Colors.cyan}")),
+				"name":     str(input(f"{Colors.end}Nom\t\t: {Colors.cyan}")).upper(),
+				"fname":    str(input(f"{Colors.end}Prénom\t\t: {Colors.cyan}")).capitalize(),
 				"age":      int(input(f"{Colors.end}Age\t\t: {Colors.cyan}")),
 				"function": str(input(f"{Colors.end}Fonction\t: {Colors.cyan}")),
 				"phone":    str(input(f"{Colors.end}Tel\t\t: {Colors.cyan}")),
-				"mail":     str(input(f"{Colors.end}Mail\t\t: {Colors.cyan}")),
+				"mail":     str(input(f"{Colors.end}Mail\t\t: {Colors.cyan}")).lower(),
 				"address":  str(input(f"{Colors.end}Adresse\t\t: {Colors.cyan}"))
 			}
 
